@@ -5,3 +5,22 @@
 # Собирающий модуль за один заход, находясь непосредственно перед некоторым кустом, собирает ягоды с этого куста и с двух соседних с ним.
 # Напишите программу для нахождения максимального числа ягод, которое может собрать за один заход собирающий модуль,
 # находясь перед некоторым кустом заданной во входном файле грядки.
+
+def fillList(arg):
+    user_list=[]
+    for i in range(arg):
+        list_element=int(input())
+        user_list.append(list_element)
+    return user_list
+
+N=int(input('введите кол-во кустов: '))
+print('введите количество ягод на каждом кусте: ')
+berries_on_bushes=fillList(N)
+print('грядка',*berries_on_bushes)
+berries_on_bushes+=berries_on_bushes[:2] #так как грядка круговая
+max_berries=0
+for i in range(1,len(berries_on_bushes)-1):
+    curr_berries = berries_on_bushes[i] + berries_on_bushes[i - 1]+ berries_on_bushes[i + 1]
+    max_berries = max(max_berries, curr_berries)
+print("Максимальное количество ягод, которое может собрать собирающий модуль за один заход:", max_berries)
+
